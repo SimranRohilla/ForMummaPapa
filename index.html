@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You be with Me forever?</title>
+    <style>
+         /* Gradient background */
+         body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: white;
+        }
+        h1 {
+            color: #fff;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            margin: 20px;
+            color: white;
+            background-color: #ff6b6b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff4c4c;
+        }
+        #angry-message, #love-message, #success-message, #marry-me-message, #crying-message, #kisses-message {
+            display: none;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        #crying-girl, #kissing-girl {
+            width: 200px;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .angry-sign {
+            font-size: 50px;
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hi Maa and Papaji</h1>
+    <p>Choose a response:</p>
+
+    <!-- Initial buttons -->
+    <button onclick="chooseSimran()">Hi Simran</button>
+    <button onclick="chooseJanu()">Hi Baby</button>
+
+    <!-- Angry message for "Hi Simran" -->
+    <div id="angry-message">
+        <p>You don't love me! 😡</p>
+        <span class="angry-sign">😠</span>
+        <button onclick="reset()">Hi Baby</button>
+    </div>
+
+    <!-- Love message for "Hi Janu" -->
+    <div id="love-message">
+        <p>Awww, you love me! 😍❤️</p>
+        <div id="yes-no-options">
+            <button onclick="loveYes()">Yes</button>
+            <button id="no-button" onclick="loveNo()" onmouseover="moveNoButton()">No</button>
+        </div>
+    </div>
+
+    <!-- Success message for clicking "Yes" -->
+    <div id="success-message">
+        <p>I knew it! ❤️❤️</p>
+        <div id="marry-me-message">
+            <p>Will you be with me forever?</p>
+            <button onclick="marryYes()">Yes</button>
+            <button onclick="marryOffcourse()">Offcourse Yes!</button>
+        </div>
+    </div>
+
+    <!-- Crying anime girl message if "Yes" is clicked -->
+    <div id="crying-message">
+        <img id="crying-girl" src="https://i.gifer.com/7JF.gif" alt="Crying Anime Girl">
+        <p>You have to type 'Offcourse yes!' 😢</p>
+        <button onclick="reset()">Reset</button>
+    </div>
+
+    <!-- Kissing anime girl message if "Offcourse yes!" is clicked -->
+    <div id="kisses-message">
+        <img id="kissing-girl" src="https://i.gifer.com/Ai9.gif" alt="Kissing Anime Girl">
+        <p>Thank you so much for everything you did for me I'm so blessed thank you for be with me..And I'll never let you down.. 😘❤️</p>
+        <button onclick="reset()">Reset</button>
+    </div>
+
+    <script>
+        // Function for clicking "Hi Simran"
+        function chooseSimran() {
+            document.querySelector('h1').style.display = 'none';  // Hide initial message
+            document.querySelector('p').style.display = 'none';   // Hide prompt
+            document.querySelectorAll('button')[0].style.display = 'none';  // Hide both initial buttons
+            document.querySelectorAll('button')[1].style.display = 'none';
+            document.getElementById('angry-message').style.display = 'block';  // Show angry message
+        }
+
+        // Function for clicking "Hi Janu"
+        function chooseJanu() {
+            document.querySelector('h1').style.display = 'none';  // Hide initial message
+            document.querySelector('p').style.display = 'none';   // Hide prompt
+            document.querySelectorAll('button')[0].style.display = 'none';  // Hide both initial buttons
+            document.querySelectorAll('button')[1].style.display = 'none';
+            document.getElementById('love-message').style.display = 'block';  // Show love message
+            document.getElementById('yes-no-options').style.display = 'block';  // Show "Yes" and "No" options
+        }
+
+        // Function for clicking "Yes" after love message
+        function loveYes() {
+            document.getElementById('yes-no-options').style.display = 'none';  // Hide Yes/No buttons
+            document.getElementById('success-message').style.display = 'block';  // Show success message
+            document.getElementById('marry-me-message').style.display = 'block';  // Show marry me options
+        }
+
+        // Function for clicking "Offcourse Yes!" after marry me
+        function marryOffcourse() {
+            document.getElementById('marry-me-message').style.display = 'none';  // Hide marry me buttons
+            document.getElementById('kisses-message').style.display = 'block';  // Show kisses message
+            document.getElementById('kissing-girl').style.display = 'block';  // Show anime kissing girl
+        }
+
+        // Function for clicking "Yes" after marry me
+        function marryYes() {
+            document.getElementById('marry-me-message').style.display = 'none';  // Hide marry me buttons
+            document.getElementById('crying-message').style.display = 'block';  // Show crying message
+            document.getElementById('crying-girl').style.display = 'block';  // Show anime crying girl
+        }
+
+        // Function for clicking "No"
+        function loveNo() {
+            alert("Oh no! 😢");
+        }
+
+        // Function to move the "No" button randomly on hover
+        function moveNoButton() {
+            var noButton = document.getElementById('no-button');
+            var x = Math.floor(Math.random() * (window.innerWidth - noButton.clientWidth));
+            var y = Math.floor(Math.random() * (window.innerHeight - noButton.clientHeight));
+            noButton.style.position = 'absolute';
+            noButton.style.left = x + 'px';
+            noButton.style.top = y + 'px';
+        }
+
+        // Reset function for when he clicks "Reset"
+        function reset() {
+            location.reload();  // Reload the page to reset everything
+        }
+    </script>
+
+</body>
+</html>
